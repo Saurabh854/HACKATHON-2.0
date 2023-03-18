@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>DRUM KIT</title>
+</head>
+
+<body>
+    <div class="container">
+        <h1>DRUM KIT </h1>
+        <div class="keys">
+
+            <div data-key="65" class="tune">
+                A
+            </div>
+            <div data-key="83" class="tune">
+                S
+            </div>
+            <div data-key="68" class="tune">
+                D
+            </div>
+            <div data-key="70" class="tune">
+                F
+            </div>
+            <div data-key="74" class="tune">
+                J
+            </div>
+            <div data-key="75" class="tune">
+                K
+            </div>
+            <div data-key="76" class="tune">
+                L
+            </div>
+        </div>
+    </div>
+
+    <audio data-key="65" src="K.mp3"></audio>
+    <audio data-key="83" src="B.mp3"></audio>
+    <audio data-key="68" src="C.mp3"></audio>
+    <audio data-key="70" src="D.mp3"></audio>
+    <audio data-key="74" src="F.mp3"></audio>
+    <audio data-key="75" src="E.mp3"></audio>
+    <audio data-key="76" src="G.mp3"></audio>
+</body>
+<script>
+    //keydown event
+    window.addEventListener('keydown', (e) => {
+        let audio = document.querySelector(`audio[data-key='${e.keyCode}']`);
+        if (!audio) return;//for invalid key
+        audio.currentTime = 0;//for continuous play
+        audio.play()//plays the audio
+
+        //animation
+        let key = document.querySelector(`.tune[data-key='${e.keyCode}']`)
+        key.classList.add('playing');
+        //for removing classes after key is press
+        setTimeout(() => {
+            key.classList.remove('playing');
+        }, 120);
+    })
+</script>
+
+</html>
